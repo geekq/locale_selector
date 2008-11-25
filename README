@@ -1,0 +1,45 @@
+= locale_selector
+
+locale_selector provides a wrapper around the excellent ruby-gettext gem
+http://www.yotabanana.com/hiki/ruby-gettext.html
+
+Offers a convinient way to specify the list of locales supported by your
+application. Provides a html UI control for locale selection.
+Maintains the user preference in a cookie and provides callback for
+saving the preference e.g. in a database.
+
+Tested with Rails 2.1 and gettext 1.92 and 1.93.
+
+= Installation
+
+For now just copy the stuff under your vendor/plugins folder.
+Soon: `gem install locale_selector`
+
+Please run `script/generate gettext_hacks` manually if you have installed
+the plugin by just copying files and not through `script/plugin install`.
+
+= Usage
+
+Please see +LocaleSelector+ for API documentation and usage examples.
+
+= Maintaining translations
+
+Please use the provided rake tasks for maintaining translations.
+Run <tt>rake -T gettext</tt> to see the list of provided rake tasks.
+
+Most frequently used are
+
+    rake gettext:updatepo
+
+to extract the new strings from the application.
+Note: please make sure, that all the database connections used
+in your models work. Gettext connects to the database to extract
+field names to be translated.
+
+
+    rake gettext:makemo
+
+for compiling the binary mo files from po-s.
+
+
+Copyright (c) 2008 [name of plugin creator], released under the MIT license.
