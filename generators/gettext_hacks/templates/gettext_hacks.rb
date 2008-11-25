@@ -1,4 +1,11 @@
 module GetText
+  # Modification of the original gettext.
+  # All the translated texts from the po files are also html escaped
+  # so translators can not break the application by introducing less-than
+  # and ampersand characters or by trying to incorporate the <blink> tag ;-)
+  #
+  # TODO: implement switch to turn the html escaping off. Idea: special
+  # prefix in the key, like starting with 'noescape' or 'with_html'
   def gettext(msgid)
     esc_html sgettext(msgid, nil)
   end
@@ -11,7 +18,7 @@ module GetText
   module_function :_, :esc_html
 end
 
-module ActiveRecord
+module ActiveRecord # :nodoc:
   class Errors
     # We adjust the gettext so the inclusion of the field name must be done explicitely
     # with #{fn}. If it is omitted, then the field name is not included.
