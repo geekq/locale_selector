@@ -12,15 +12,39 @@ Tested with Rails 2.1 and gettext 1.92 and 1.93.
 
 = Installation
 
-For now just copy the stuff under your vendor/plugins folder.
-Soon: `gem install locale_selector`
+1.Install prerequisites. Only once per computer needed. All the remaining steps
+are per Rails application.
 
-Please run `script/generate gettext_hacks` manually if you have installed
-the plugin by just copying files and not through `script/plugin install`.
+    gem install gettext
+
+2.Install the locale_selector:
+
+    script/plugin install git://github.com/geekq/locale_selector.git
+
+3.Run the generator to create an initializer with the gettext hacks
+
+    script/generate gettext_hacks
+
+4.Reference the gettext in your environment.rb. For Rails 2.1 put following
+at the top of Rails::Initializer.run block:
+
+    config.gem 'gettext', :lib => 'gettext/rails'
+
+5.Please provide the root route in your routes.rb and delete the public/index.html
+
+    map.root :controller => "mycontroller"
+
 
 = Usage
 
 Please see +LocaleSelector+ for API documentation and usage examples.
+
+
+= Future
+
+* package as gem
+* more unit tests
+
 
 = Maintaining translations
 
@@ -42,4 +66,7 @@ field names to be translated.
 for compiling the binary mo files from po-s.
 
 
-Copyright (c) 2008 [name of plugin creator], released under the MIT license.
+Author::    Vladimir Dobriakov (http://blog.geekQ.net)
+Copyright:: 2008
+License::   MIT license
+Sponsored by:: .

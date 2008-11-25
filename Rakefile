@@ -16,7 +16,12 @@ desc 'Generate documentation for the locale_selector plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'LocaleSelector'
-  rdoc.options << '--line-numbers' << '--inline-source' << '--promiscuous'
+  rdoc.options << '--line-numbers' << '--inline-source' << '--promiscuous' << '--main=README'
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.rdoc_files.include('README')
+end
+
+desc 'Publish the home page'
+task :publish => :rerdoc do
+  `scp -r rdoc/* vd@www.innoq.com:/home/vd/public_html/locale_selector`
 end

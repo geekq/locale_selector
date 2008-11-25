@@ -1,12 +1,10 @@
 class GettextHacksGenerator < Rails::Generator::Base
 
   def initialize(*runtime_args)
-    debugger
     super(*runtime_args)
   end
 
   def manifest
-    debugger
     record do |m|
       m.directory File.join('config/initializers')
 

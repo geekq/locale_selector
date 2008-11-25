@@ -1,8 +1,5 @@
 require 'uri'
 =begin rdoc
-Author::    Vladimir Dobriakov (http://blog.geekQ.net)
-Copyright:: Copyright (c) 2008
-License::   MIT license
 
 = Usage
 
