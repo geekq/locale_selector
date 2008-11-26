@@ -14,6 +14,7 @@ def app_version
   "#{gettext_domain} 1.0"
 end
 
+# based on GetText.update_pofiles
 def update_po_single_language(textdomain, files, app_version, lang, po_root = "po", refpot = "tmp.pot")
   rgettext(files, refpot)
 
