@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/abstract_unit'
+require File.dirname(__FILE__) + '/../test_helper'
 
 # BTW: MyController = Class.new(ActionController::Base) {}
 # does not work. Because of some Rails changes on the Class class?

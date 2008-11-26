@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/abstract_unit'
+require 'test/unit'
 
 class AcceptLanguageParserTest < Test::Unit::TestCase
   include LocaleSelector::ControllerInstanceMethods
