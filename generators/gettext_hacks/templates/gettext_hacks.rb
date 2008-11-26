@@ -1,11 +1,16 @@
 module GetText
   # Modification of the original gettext.
-  # All the translated texts from the po files are also html escaped
+  #
+  # By default all the translated texts from the po files are also html escaped
   # so translators can not break the application by introducing less-than
   # and ampersand characters or by trying to incorporate the <blink> tag ;-)
+  #
+  # It is possible though to turn this feature off for particular messages:
+  # if msgid starts with '#no_html_escaping#' then the translation returned as is,
+  # without html escaping.
   def gettext(msgid)
     translated = sgettext(msgid, nil)
-    if msgid =~ /^#no_html_escape#/
+    if msgid =~ /^#no_html_escaping#/
       translated
     else
       esc_html translated
