@@ -3,11 +3,13 @@ module GetText
   # All the translated texts from the po files are also html escaped
   # so translators can not break the application by introducing less-than
   # and ampersand characters or by trying to incorporate the <blink> tag ;-)
-  #
-  # TODO: implement switch to turn the html escaping off. Idea: special
-  # prefix in the key, like starting with 'noescape' or 'with_html'
   def gettext(msgid)
-    esc_html sgettext(msgid, nil)
+    translated = sgettext(msgid, nil)
+    if msgid =~ /^#no_html_escape#/
+      translated
+    else
+      esc_html translated
+    end
   end
 
   def esc_html(txt)
