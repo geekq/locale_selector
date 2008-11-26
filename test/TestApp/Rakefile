@@ -8,3 +8,5 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+import File.join(File.dirname(__FILE__), '../../tasks/gettext.rake')
