@@ -4,5 +4,5 @@ This plugin does some integration work. It barely makes sense to test it in
 isolation. It was originally developed as part of a real application and was
 tested in the context of that application.
 
-Now where it is published as a plugin a small test application is the right 
-way test the plugin.
+Now where it is published as a plugin, a small test application is the right
+way to test the plugin.

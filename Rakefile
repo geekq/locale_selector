@@ -19,6 +19,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.options << '--line-numbers' << '--inline-source' << '--promiscuous' << '--main=README.rdoc'
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.rdoc_files.include('README.rdoc')
+  rdoc.rdoc_files.include('TESTING.rdoc')
   rdoc.rdoc_files.include('generators/gettext_hacks/templates/gettext_hacks.rb')
 end
 
