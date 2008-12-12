@@ -1,2 +1,3 @@
-rdoc/
-test/TestApp/locale/
+/pkg
+/rdoc
+/test/TestApp/locale

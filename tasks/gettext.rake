@@ -42,11 +42,11 @@ namespace :gettext do
     if lang.nil?
       fail "Use lang={language to process} or lang=all to process po-files for all languages."
     else
-      if lang == 'all'
-        GetText.update_pofiles(gettext_domain, source_files, app_version)
-      else
-        update_po_single_language(gettext_domain, source_files, app_version, lang)
-      end
+      options = {:msgmerge => [:no_wrap, :no_fuzzy_matching, :sort_output]}
+      options[:lang] = lang if lang != 'all'
+      options[:verbose] = true
+      puts options.inspect
+      GetText.update_po_files(gettext_domain, source_files, app_version, options)
     end
   end
 
