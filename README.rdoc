@@ -8,9 +8,12 @@ application. Provides a html UI control for locale selection.
 Maintains the user preference in a cookie and provides callback for
 saving the preference e.g. in a database.
 
-Tested with Rails 2.1 and gettext 1.92 and 1.93.
+Tested with Rails 2.1 and gettext 1.93.
 
 = Installation
+
+Note: the gem on rubyforge is on the way. `gem install locale_selector` will be
+enough to install the locale_selector and the prerequisites.
 
 1.Install prerequisites. Only once per computer needed. All the remaining steps
 are per Rails application.
@@ -28,7 +31,7 @@ are per Rails application.
 4.Reference the gettext in your environment.rb. For Rails 2.1 put following
 at the top of Rails::Initializer.run block:
 
-    config.gem 'gettext', :lib => 'gettext/rails'
+    config.gem 'gettext', :lib => 'gettext/rails', :version => '1.93.0'
 
 5.Please provide the root route in your routes.rb and delete the public/index.html
 
@@ -45,6 +48,10 @@ Please see +LocaleSelector+ for API documentation and usage examples.
 * package as gem
 * more unit tests
 
+= Versioning
+
+The version numbers of locale_selector match the version of the gettext gem
+it is based on.
 
 = Maintaining translations
 

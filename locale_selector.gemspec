@@ -7,10 +7,7 @@ SPEC = Gem::Specification.new do |s|
   s.email = 'vd_extern@vfnet.de'
   s.homepage = 'http://github.com/geekq/locale_selector'
   s.files = %w(MIT-LICENSE README.rdoc Rakefile TESTING.rdoc init.rb install.rb locale_selector.gemspec uninstall.rb) +
-    ['generators/gettext_hacks/templates/gettext_hacks.rb',
-    'generators/gettext_hacks/gettext_hacks_generator.rb',
-    'lib/locale_selector.rb',
-    'tasks/gettext.rake' ]
+    Dir.glob("{generators,lib,tasks,rails}/**/*")
 
   Dir.glob("{generators,lib,tasks}/**/*")
   s.require_path = "lib"
