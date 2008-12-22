@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default 1.0\n"
-"POT-Creation-Date: 2008-11-26 16:24+0100\n"
+"POT-Creation-Date: 2008-12-15 17:36+0100\n"
 "PO-Revision-Date: 2008-11-26 16:07+0100\n"
 "Last-Translator: Vladimir Dobriakov <vladimir.dobriakov@innoq.com>\n"
 "Language-Team: none\n"
@@ -22,5 +22,6 @@ msgstr "Привет!"
 
 #: app/views/hello/index.html.erb:3
 msgid "#no_html_escaping# mission statement"
-msgstr "Цель этого проекта - добиться <b>значительного</b> улучшения во всех "
+msgstr ""
+"Цель этого проекта - добиться <b>значительного</b> улучшения во всех "
 "аспектах интернационализации."
