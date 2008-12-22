@@ -20,4 +20,5 @@ SPEC = Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.rdoc', 'TESTING.rdoc', 'MIT-LICENSE']
   s.rdoc_options = ['--line-numbers', '--inline-source', '--promiscuous', '--main', 'README.rdoc']
   s.add_dependency 'gettext', '1.93.0'
+  s.rubyforge_project = 'locale_selector'
 end

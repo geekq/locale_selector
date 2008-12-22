@@ -1,4 +1,6 @@
 require File.join(File.dirname(__FILE__), '../lib/locale_selector.rb')
+require 'gettext'
+require 'gettext/utils'
 
 def gettext_domain
   initializer_name = File.join(File.dirname(__FILE__),
@@ -42,11 +44,18 @@ namespace :gettext do
     if lang.nil?
       fail "Use lang={language to process} or lang=all to process po-files for all languages."
     else
-      options = {:msgmerge => [:no_wrap, :no_fuzzy_matching, :sort_output]}
-      options[:lang] = lang if lang != 'all'
-      options[:verbose] = true
-      puts options.inspect
-      GetText.update_po_files(gettext_domain, source_files, app_version, options)
+      # will work in gettext-1.94
+      # options = {:msgmerge => [:no_wrap, :no_fuzzy_matching, :sort_output]}
+      # options[:lang] = lang if lang != 'all'
+      # options[:verbose] = true
+      # puts options.inspect
+      # GetText.update_pofiles(gettext_domain, source_files, app_version, options)
+
+      if lang == 'all'
+        GetText.update_pofiles(gettext_domain, source_files, app_version)
+      else
+        update_po_single_language(gettext_domain, source_files, app_version, lang)
+      end
     end
   end
 
