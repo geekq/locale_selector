@@ -36,6 +36,6 @@ end
 
 desc 'Publish the home page'
 task :publish => :rerdoc do
-  `scp -r rdoc/* vd@www.innoq.com:/home/vd/public_html/locale_selector`
+  sh 'scp -r rdoc/* geekq@rubyforge.org:/var/www/gforge-projects/locale-selector'
 end
 

@@ -10,6 +10,12 @@ saving the preference e.g. in a database.
 
 Tested with Rails 2.1 and gettext 1.93.
 
+locale_selector home page (rdoc): http://locale-selector.rubyforge.org/index.html
+
+locale_selector rubyforge page (releases etc.): http://rubyforge.org/projects/locale-selector
+
+source repository on github: http://github.com/geekq/locale_selector
+
 = Installation
 
 Note: the gem on rubyforge is on the way. `gem install locale_selector` will be
@@ -20,9 +26,11 @@ are per Rails application.
 
     gem install gettext
 
-2.Install the locale_selector:
+2.Install the locale_selector as plugin:
 
     script/plugin install git://github.com/geekq/locale_selector.git
+
+(TODO: later - use a generator)
 
 3.Run the generator to create an initializer with the gettext hacks
 
@@ -74,6 +82,5 @@ for compiling the binary mo files from po-s.
 
 
 Author::    Vladimir Dobriakov (http://www.innoq.com/blog/vd)
-Copyright:: 2008
+Copyright:: Vodafone, 2008
 License::   MIT license
-Sponsored by:: .
