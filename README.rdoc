@@ -73,7 +73,7 @@ field names to be translated.
 for compiling the binary mo files from po-s.
 
 
-Author::    Vladimir Dobriakov (http://blog.geekQ.net)
+Author::    Vladimir Dobriakov (http://www.innoq.com/blog/vd)
 Copyright:: 2008
 License::   MIT license
 Sponsored by:: .
