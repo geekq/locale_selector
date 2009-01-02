@@ -5,12 +5,13 @@
         <data xmlns="http://www.netbeans.org/ns/ruby-project/1">
             <name>locale_selector</name>
             <source-roots>
-                <root id="src.test.dir"/>
-                <root id="src.lib.dir"/>
                 <root id="src.generators.dir"/>
+                <root id="src.lib.dir"/>
                 <root id="src.rails.dir"/>
             </source-roots>
-            <test-roots/>
+            <test-roots>
+                <root id="test.test.dir"/>
+            </test-roots>
         </data>
     </configuration>
 </project>
