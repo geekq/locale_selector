@@ -1,14 +1,81 @@
 require File.join(File.dirname(__FILE__), '../locale_selector.rb')
 require 'gettext'
 require 'gettext/utils'
+require 'activerecord'
 
 puts "Loading active_record parsing hacks in gettext_tasks.rb"
+require 'gettext/rgettext'
 require 'gettext/parser/active_record'
+include GetText
+
+ActiveRecord::Base.instance_eval do
+  alias inherited_without_log inherited
+
+  @@active_record_classes_list = []
+
+  def inherited(subclass)
+    puts "registering an ActiveRecord model for later processing: #{subclass}"
+    active_record_classes_list << "#{subclass}"
+    inherited_without_log(subclass)
+  end
+
+  def active_record_classes_list
+    @@active_record_classes_list
+  end
+
+  def reset_active_record_classes_list
+    @@active_record_classes_list = []
+  end
+end
+
 module GetText
   module ActiveRecordParser
-    def parse(file, targets = []) # :nodoc:
-      puts "Vladimir's ActiveRecordParser.parse (2)"
+    puts "overriding the original activerecord parser"
+  
+    def self.parse(file, targets = []) # :nodoc:
+      puts "locale_selector specific version of activerecordparser.parse is parsing #{file}"
+      GetText.locale = "en"
+      old_constants = Object.constants
+      begin
+        eval(open(file).read, TOPLEVEL_BINDING)
+      rescue
+        $stderr.puts _("Ignored '%{file}'. Solve dependencies first.") % {:file => file}
+        $stderr.puts $!
+      end
+      loaded_constants = Object.constants - old_constants
+      loaded_constants.each do |classname|
+        klass = eval(classname, TOPLEVEL_BINDING)
+        if klass.is_a?(Class) && klass < ActiveRecord::Base
+          unless (klass.untranslate_all? || klass.abstract_class?)
+            add_target(targets, file, ::Inflector.singularize(klass.table_name.gsub(/_/, " ")))
+            unless klass.class_name == classname
+              add_target(targets, file, ::Inflector.singularize(classname.gsub(/_/, " ").downcase))
+            end
+            begin
+              klass.columns.each do |column|
+                unless untranslate_column?(klass, column.name)
+                  if @config[:use_classname]
+                    msgid = classname + "|" +  klass.human_attribute_name(column.name)
+                  else
+                    msgid = klass.human_attribute_name(column.name)
+                  end
+                  add_target(targets, file, msgid)
+                end
+              end
+            rescue
+              $stderr.puts _("No database is available.")
+              $stderr.puts $!
+            end
+          end
+        end
+      end
+      if RubyParser.target?(file)
+        targets = RubyParser.parse(file, targets)
+      end
+      targets.uniq!
+      targets
     end
+
   end
 end
 
@@ -44,7 +111,7 @@ namespace :gettext do
     "in your models work. Gettext connects to the database to extract " \
     "field names to be translated. " \
     "Use lang={language to process} or lang=all to process po-files for all languages."
-  task :updatepo do
+  task :updatepo => :environment do
     require 'gettext/utils'
     puts "Updating translation files for gettext domain #{gettext_domain}"
     orig_msgmerge = ENV["MSGMERGE_PATH"] || "msgmerge"

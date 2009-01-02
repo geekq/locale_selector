@@ -13,9 +13,6 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
-  # config.gem "bj"
-  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
-  # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'gettext', :lib => 'gettext/rails', :version => '1.93'
 #  config.gem 'locale_selector', :version => '1.93'
 
@@ -56,5 +53,5 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql
 
   # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector
+  config.active_record.observers = :user_observer
 end
