@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(:version => 1) do
     t.date   "lastupdate"
   end
 
+  create_table "employees", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "resumes", :force => true do |t|
     t.integer "user_id", :null => false
     t.text    "content"

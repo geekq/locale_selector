@@ -1,9 +1,10 @@
-require 'test/unit'
+require 'test_helper'
 require 'fileutils'
 require 'locale_selector'
 
 class ActiveRecordGatheringTest < Test::Unit::TestCase
   def self.po_name()
+    # puts "po_name: #{File.expand_path(File.join(Dir.pwd, "po/default.pot"))}"
     File.expand_path(File.join(Dir.pwd, "po/default.pot"))
   end
 
@@ -12,13 +13,14 @@ class ActiveRecordGatheringTest < Test::Unit::TestCase
   end
 
   def self.major_setup
-    FileUtils.rm_f(po_name)
-    Dir.chdir File.join(File.dirname(__FILE__), 'TestApp')
-    puts `rake gettext:updatepo lang=de`
+#    FileUtils.rm_f(po_name)
+#    Dir.chdir File.join(File.dirname(__FILE__), 'TestApp')
+    puts "pwd: #{`pwd`}"
+#    puts `rake gettext:updatepo lang=de`
   end
 
   def self.major_teardown
-    Dir.chdir '..'
+    #Dir.chdir '..'
   end
 
   def assert_contains_string(search_for)
@@ -35,7 +37,7 @@ class ActiveRecordGatheringTest < Test::Unit::TestCase
   end
 
   def test_namespaced_model
-    assert_po_matches(/Resume\|Content/)
+    assert_po_matches(/HumanResources::Employee\|Name/)
   end
 
   def test_model_with_observer

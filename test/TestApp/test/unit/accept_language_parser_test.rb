@@ -1,4 +1,3 @@
-require 'test/unit'
 require 'test_helper'
 require 'locale_selector'
 

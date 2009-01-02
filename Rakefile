@@ -10,9 +10,8 @@ task :default => :test
 
 desc 'Test the locale_selector plugin.'
 Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+  puts "locale_selector is tested within a simple test apllication."
+  puts "Please run `rake test` in the test/TestApp folder."
 end
 
 load File.join(File.dirname(__FILE__), 'locale_selector.gemspec')

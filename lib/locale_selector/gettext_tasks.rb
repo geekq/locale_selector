@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), '../locale_selector.rb')
 require 'gettext'
 require 'gettext/utils'
+require 'activesupport'
 require 'activerecord'
 
 puts "Loading active_record parsing hacks in gettext_tasks.rb"
@@ -42,14 +43,17 @@ module GetText
         $stderr.puts _("Ignored '%{file}'. Solve dependencies first.") % {:file => file}
         $stderr.puts $!
       end
-      loaded_constants = Object.constants - old_constants
+      #loaded_constants = Object.constants - old_constants
+      loaded_constants = ActiveRecord::Base.active_record_classes_list
+      ActiveRecord::Base.reset_active_record_classes_list
       loaded_constants.each do |classname|
         klass = eval(classname, TOPLEVEL_BINDING)
         if klass.is_a?(Class) && klass < ActiveRecord::Base
+          puts "processing class #{klass.name}"
           unless (klass.untranslate_all? || klass.abstract_class?)
-            add_target(targets, file, ::Inflector.singularize(klass.table_name.gsub(/_/, " ")))
+            add_target(targets, file, ActiveSupport::Inflector.singularize(klass.table_name.gsub(/_/, " ")))
             unless klass.class_name == classname
-              add_target(targets, file, ::Inflector.singularize(classname.gsub(/_/, " ").downcase))
+              add_target(targets, file, ActiveSupport::Inflector.singularize(classname.gsub(/_/, " ").downcase))
             end
             begin
               klass.columns.each do |column|

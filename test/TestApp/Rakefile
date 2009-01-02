@@ -4,6 +4,7 @@
 require(File.join(File.dirname(__FILE__), 'config', 'boot'))
 
 require 'rake'
+require 'rake/clean'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
@@ -12,3 +13,17 @@ require 'tasks/rails'
 # bind to our development version of the locale_selector
 $:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
 require 'locale_selector/gettext_tasks'
+
+ CLOBBER.include('po/default.pot')
+
+namespace :test do
+  desc 'Regenerate po files'
+  task 'regenerate_po' do
+    #FileUtils.rm_f(po_name)
+    puts "pwd: #{`pwd`}"
+    sh 'rake gettext:updatepo lang=de'
+  end
+
+  task :integration => ['clobber', 'environment', 'db:schema:load', 'db:test:prepare', 'test:regenerate_po']
+end
+
