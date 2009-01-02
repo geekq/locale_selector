@@ -18,28 +18,28 @@ source repository on github: http://github.com/geekq/locale_selector
 
 = Installation
 
-Note: the gem on rubyforge is on the way. `gem install locale_selector` will be
-enough to install the locale_selector and the prerequisites.
+1.Install as a gem with
 
-1.Install prerequisites. Only once per computer needed. All the remaining steps
-are per Rails application.
+    gem install locale_selector
 
-    gem install gettext
+It also installs the required gettext gem.
 
-2.Install the locale_selector as plugin:
+2.Append following to the Rakefile of your Rails application to get the
+gettext related tasks
 
-    script/plugin install git://github.com/geekq/locale_selector.git
+    require 'locale_selector/gettext_tasks'
 
-(TODO: later - use a generator)
+`rake -T gettext` now offers a couple of new tasks.
 
-3.Run the generator to create an initializer with the gettext hacks
-
-    script/generate gettext_hacks
-
-4.Reference the gettext in your environment.rb. For Rails 2.1 put following
+3.Reference the gettext in your environment.rb. For Rails 2.1 put following
 at the top of Rails::Initializer.run block:
 
-    config.gem 'gettext', :lib => 'gettext/rails', :version => '1.93.0'
+    config.gem 'gettext', :lib => 'gettext/rails', :version => '1.93'
+    config.gem 'locale_selector', :version => '1.93'
+
+4.Run the generator to create an initializer with the gettext hacks
+
+    script/generate gettext_hacks
 
 5.Please provide the root route in your routes.rb and delete the public/index.html
 
@@ -50,11 +50,6 @@ at the top of Rails::Initializer.run block:
 
 Please see +LocaleSelector+ for API documentation and usage examples.
 
-
-= Future
-
-* package as gem
-* more unit tests
 
 = Versioning
 

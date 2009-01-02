@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '../lib/locale_selector.rb')
+require File.join(File.dirname(__FILE__), '../locale_selector.rb')
 require 'gettext'
 require 'gettext/utils'
 
