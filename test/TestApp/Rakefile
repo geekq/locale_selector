@@ -19,8 +19,6 @@ require 'locale_selector/gettext_tasks'
 namespace :test do
   desc 'Regenerate po files'
   task 'regenerate_po' do
-    #FileUtils.rm_f(po_name)
-    puts "pwd: #{`pwd`}"
     sh 'rake gettext:updatepo lang=de'
   end
 

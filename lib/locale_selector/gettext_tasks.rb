@@ -19,8 +19,10 @@ ActiveRecord::Base.instance_eval do
   @@active_record_classes_list = []
 
   def inherited(subclass)
-    log "registering an ActiveRecord model for later processing: #{subclass}"
-    active_record_classes_list << "#{subclass}"
+    unless "#{subclass}" =~ /^CGI::/
+      log "registering an ActiveRecord model for later processing: #{subclass}"
+      active_record_classes_list << "#{subclass}"
+    end
     inherited_without_log(subclass)
   end
 
