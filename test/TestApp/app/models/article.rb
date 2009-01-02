@@ -5,5 +5,5 @@ class Article < ActiveRecord::Base
 end
 
 class ArticleProperty < ActiveRecord::Base
-  belongs_to Article
+#  belongs_to Article
 end

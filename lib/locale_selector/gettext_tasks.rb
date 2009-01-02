@@ -9,13 +9,17 @@ require 'gettext/rgettext'
 require 'gettext/parser/active_record'
 include GetText
 
+def log(msg)
+  puts msg if false # set verbosity here
+end
+
 ActiveRecord::Base.instance_eval do
   alias inherited_without_log inherited
 
   @@active_record_classes_list = []
 
   def inherited(subclass)
-    puts "registering an ActiveRecord model for later processing: #{subclass}"
+    log "registering an ActiveRecord model for later processing: #{subclass}"
     active_record_classes_list << "#{subclass}"
     inherited_without_log(subclass)
   end
@@ -31,25 +35,23 @@ end
 
 module GetText
   module ActiveRecordParser
-    puts "overriding the original activerecord parser"
+    log "overriding the original activerecord parser"
   
     def self.parse(file, targets = []) # :nodoc:
-      puts "locale_selector specific version of activerecordparser.parse is parsing #{file}"
+      log "locale_selector specific version of activerecordparser.parse is parsing #{file}"
       GetText.locale = "en"
-      old_constants = Object.constants
       begin
         eval(open(file).read, TOPLEVEL_BINDING)
       rescue
         $stderr.puts _("Ignored '%{file}'. Solve dependencies first.") % {:file => file}
         $stderr.puts $!
       end
-      #loaded_constants = Object.constants - old_constants
       loaded_constants = ActiveRecord::Base.active_record_classes_list
       ActiveRecord::Base.reset_active_record_classes_list
       loaded_constants.each do |classname|
         klass = eval(classname, TOPLEVEL_BINDING)
         if klass.is_a?(Class) && klass < ActiveRecord::Base
-          puts "processing class #{klass.name}"
+          log "processing class #{klass.name}"
           unless (klass.untranslate_all? || klass.abstract_class?)
             add_target(targets, file, ActiveSupport::Inflector.singularize(klass.table_name.gsub(/_/, " ")))
             unless klass.class_name == classname
