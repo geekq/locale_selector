@@ -39,3 +39,12 @@ module ActiveRecord # :nodoc:
   end
 end
 
+puts "Loading active_record parsing hacks in gettext_hacks.rb"
+#require 'gettext/parser/active_record'
+#module GetText
+#  module ActiveRecordParser
+#    def parse(file, targets = []) # :nodoc:
+#      puts "Vladimir's ActiveRecordParser.parse"
+#    end
+#  end
+#end

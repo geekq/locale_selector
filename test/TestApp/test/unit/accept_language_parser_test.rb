@@ -1,4 +1,6 @@
 require 'test/unit'
+require 'test_helper'
+require 'locale_selector'
 
 class AcceptLanguageParserTest < Test::Unit::TestCase
   include LocaleSelector::ControllerInstanceMethods

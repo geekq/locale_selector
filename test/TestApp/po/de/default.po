@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default 1.0\n"
-"POT-Creation-Date: 2008-11-26 16:24+0100\n"
+"POT-Creation-Date: 2009-01-02 15:09+0100\n"
 "PO-Revision-Date: 2008-11-26 15:37+0100\n"
 "Last-Translator: Vladimir Dobriakov <vladimir.dobriakov@innoq.com>\n"
 "Language-Team: none\n"

@@ -2,6 +2,16 @@ require File.join(File.dirname(__FILE__), '../locale_selector.rb')
 require 'gettext'
 require 'gettext/utils'
 
+puts "Loading active_record parsing hacks in gettext_tasks.rb"
+#require 'gettext/parser/active_record'
+#module GetText
+#  module ActiveRecordParser
+#    def parse(file, targets = []) # :nodoc:
+#      puts "Vladimir's ActiveRecordParser.parse (2)"
+#    end
+#  end
+#end
+
 def gettext_domain
   initializer_name = File.join(File.dirname(__FILE__),
     '../../../../config/initializers/gettext.rb')

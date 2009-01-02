@@ -9,4 +9,6 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-import File.join(File.dirname(__FILE__), '../../tasks/gettext.rake')
+# bind to our development version of the locale_selector
+$:.unshift File.join(File.dirname(__FILE__), '..', '..', 'lib')
+require 'locale_selector/gettext_tasks'

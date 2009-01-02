@@ -6,7 +6,10 @@ require 'uri'
 == Controller
 
 In your controllers or in the application controller
-use ControllerClassMethods#offer_locales:
+
+  require 'locale_selector'
+
+and use ControllerClassMethods#offer_locales:
 
   offer_locales :en_UK, :en_ZA, :de, :ru
 
