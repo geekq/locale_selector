@@ -14,7 +14,7 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
   config.gem 'gettext', :lib => 'gettext/rails', :version => '1.93'
-#  config.gem 'locale_selector', :version => '1.93'
+  # config.gem 'locale_selector' #, :version => '1.93'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

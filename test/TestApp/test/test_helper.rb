@@ -1,8 +1,8 @@
 ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
 # bind to our development version of the locale_selector
 $:.unshift File.join(File.dirname(__FILE__), '..', '..', '..', 'lib')
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require 'test_help'
 require 'locale_selector'
 
 class Test::Unit::TestCase
