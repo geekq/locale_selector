@@ -38,6 +38,15 @@ end
 module GetText
   module ActiveRecordParser
     log "overriding the original activerecord parser"
+
+    def self.singularize(s)
+      # there seems to be a difference between Rails 2.1.2 and 2.1.0
+      if defined?(ActiveSupport::Inflector)
+        ActiveSupport::Inflector.singularize(s)
+      else
+        Inflector.singularize(s)
+      end
+    end
   
     def self.parse(file, targets = []) # :nodoc:
       log "locale_selector specific version of activerecordparser.parse is parsing #{file}"
@@ -55,9 +64,9 @@ module GetText
         if klass.is_a?(Class) && klass < ActiveRecord::Base
           log "processing class #{klass.name}"
           unless (klass.untranslate_all? || klass.abstract_class?)
-            add_target(targets, file, ActiveSupport::Inflector.singularize(klass.table_name.gsub(/_/, " ")))
+            add_target(targets, file, singularize(klass.table_name.gsub(/_/, " ")))
             unless klass.class_name == classname
-              add_target(targets, file, ActiveSupport::Inflector.singularize(classname.gsub(/_/, " ").downcase))
+              add_target(targets, file, singularize(classname.gsub(/_/, " ").downcase))
             end
             begin
               klass.columns.each do |column|

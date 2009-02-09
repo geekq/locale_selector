@@ -1,6 +1,6 @@
 SPEC = Gem::Specification.new do |s|
   s.name = 'locale_selector'
-  s.version = '1.93.0'
+  s.version = '1.93.1'
   s.summary = 'Wraps and improves ruby-gettext, provides UI for locale selection, maintains user preferences.'
   s.description = s.summary
   s.author = 'Vladimir Dobriakov'
